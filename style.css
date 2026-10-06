@@ -1,0 +1,316 @@
+/* ==========================================================
+   CUSY – sartoria artigianale
+   Palette: bianco latte, cipria, salvia, filo dorato
+   Motivo guida: il punto filza (cucitura tratteggiata)
+   ========================================================== */
+
+:root {
+  --latte: #FBF8F4;
+  --cipria: #F1D9D6;
+  --cipria-soft: #F8EAE7;
+  --salvia: #B3C2AB;
+  --salvia-deep: #55684F;
+  --crema: #F3ECE0;
+  --oro: #C9A66B;
+  --oro-soft: #EBDDBF;
+  --ink: #3B3330;
+  --ink-soft: #6B5F5A;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --wrap: 1120px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  background: var(--latte);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--salvia-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Titoli ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+h1 { font-size: clamp(2.6rem, 6.5vw, 4.5rem); font-weight: 300; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 1.25rem; }
+h3 { font-size: 1.3rem; }
+p  { margin: 0 0 1em; max-width: 62ch; }
+
+/* ---------- Intestazione ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem var(--gutter);
+  background: rgba(251, 248, 244, 0.92);
+  backdrop-filter: blur(8px);
+}
+.brand { text-decoration: none; display: flex; align-items: baseline; gap: 0.7rem; }
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.brand-sub { font-size: 0.9rem; color: var(--ink-soft); }
+
+.nav { display: flex; gap: clamp(1rem, 3vw, 2rem); }
+.nav a {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  background: linear-gradient(var(--oro), var(--oro)) left bottom / 0 2px no-repeat;
+  transition: background-size 0.25s ease;
+}
+.nav a:hover { background-size: 100% 2px; }
+
+/* ---------- Contenitori ---------- */
+main > section {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+}
+
+/* ---------- Punto filza (divisore) ---------- */
+.stitch {
+  max-width: calc(var(--wrap) - 2 * var(--gutter));
+  width: calc(100% - 2 * var(--gutter));
+  margin: 0 auto;
+  height: 3px;
+  background-image: linear-gradient(90deg, var(--oro) 55%, transparent 0);
+  background-size: 16px 3px;
+  opacity: 0.8;
+}
+
+/* ---------- Segnaposto per foto e video ---------- */
+.ph {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.ph-rose  { background: linear-gradient(160deg, var(--cipria), var(--cipria-soft)); }
+.ph-sage  { background: linear-gradient(160deg, var(--salvia), #D5DECF); }
+.ph-cream { background: linear-gradient(160deg, var(--crema), var(--oro-soft)); }
+.ph-gold  { background: linear-gradient(160deg, var(--oro-soft), var(--crema)); }
+.ph-tall  { min-height: 380px; }
+
+/* Se inserisci vere immagini o video */
+.arch img, .arch video,
+.gallery-grid figure img,
+.about-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Arco (forma della finestra) ---------- */
+.arch {
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 8px 8px;
+  overflow: hidden;
+}
+.arch-sm { aspect-ratio: 3 / 4; }
+
+/* ---------- Pulsanti ---------- */
+.actions, .contact-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid var(--salvia-deep);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-primary { background: var(--salvia-deep); color: #fff; }
+.btn-primary:hover { background: #435440; border-color: #435440; }
+.btn-ghost { background: transparent; color: var(--salvia-deep); }
+.btn-ghost:hover { background: var(--salvia-deep); color: #fff; }
+
+/* ---------- Hero ---------- */
+main > .hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 6vw, 4.5rem);
+}
+.hero-text .lead {
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin: 1.5rem 0 2rem;
+}
+.hero-media .arch { max-width: 420px; margin-left: auto; }
+
+/* Il filo che si cuce: unico movimento della pagina */
+.stitch-draw {
+  width: min(420px, 100%);
+  height: 36px;
+  margin-top: 1.1rem;
+  color: var(--oro);
+  clip-path: inset(0 100% 0 0);
+  animation: cuci 2.4s 0.4s cubic-bezier(.5, .1, .2, 1) forwards;
+}
+.stitch-draw svg { width: 100%; height: 100%; display: block; }
+@keyframes cuci { to { clip-path: inset(0 0 0 0); } }
+
+/* ---------- Lavori in evidenza ---------- */
+.featured h2 { margin-bottom: 2rem; }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+.featured figure { margin: 0; }
+.featured figcaption {
+  margin-top: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+/* ---------- Chi siamo ---------- */
+main > .about {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.about-media { border-radius: 8px; overflow: hidden; }
+.about-text p { font-size: 1.1rem; }
+
+/* ---------- Servizi ---------- */
+main > .services {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+.services-intro { position: sticky; top: 6rem; }
+.services-intro p { color: var(--ink-soft); }
+
+.service-list { list-style: none; margin: 0; padding: 0; }
+.service-list li {
+  padding: 1.5rem 0;
+  background-image: linear-gradient(90deg, var(--oro) 55%, transparent 0);
+  background-size: 16px 2px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.service-list li:first-child { padding-top: 0; }
+.service-list li:last-child { background-image: none; padding-bottom: 0; }
+.service-list h3 { margin-bottom: 0.4rem; }
+.service-list p { margin: 0; color: var(--ink-soft); }
+
+/* ---------- Galleria ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+.chip {
+  font: inherit;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid var(--cipria);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.chip:hover { background: var(--cipria-soft); }
+.chip[aria-pressed="true"] {
+  background: var(--cipria);
+  border-color: var(--cipria);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+}
+.gallery-grid figure { margin: 0; }
+.gallery-grid .ph,
+.gallery-grid img {
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+}
+.gallery-grid figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Contatti ---------- */
+main > .contact { text-align: center; }
+.contact p { margin-left: auto; margin-right: auto; }
+.contact-lead { font-size: 1.2rem; color: var(--ink-soft); }
+.contact-actions { justify-content: center; margin: 1.75rem 0 2rem; }
+.contact-place { color: var(--ink-soft); }
+.contact-social { display: flex; justify-content: center; gap: 1.5rem; }
+.contact-social a { font-weight: 500; }
+
+/* ---------- Piè di pagina ---------- */
+.site-footer {
+  text-align: center;
+  padding: 2rem var(--gutter) 3rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.site-footer p { margin: 0 auto; }
+
+/* ---------- Tablet e mobile ---------- */
+@media (max-width: 900px) {
+  main > .hero,
+  main > .about,
+  main > .services { grid-template-columns: 1fr; }
+  .hero-media .arch { margin: 0 auto; max-width: 340px; }
+  .services-intro { position: static; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .ph-tall { min-height: 280px; }
+}
+
+@media (max-width: 640px) {
+  .site-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; position: static; }
+  .brand-sub { display: none; }
+  .featured-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .btn { width: 100%; text-align: center; }
+  .actions, .contact-actions { flex-direction: column; }
+}
+
+/* ---------- Movimento ridotto ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stitch-draw { animation: none; clip-path: none; }
+  .nav a, .btn, .chip { transition: none; }
+}
